@@ -76,19 +76,29 @@
 Worktreeはメインリポジトリの**兄弟ディレクトリ**として配置します。
 
 ```
-Workspace/
-  Rishu/           ← main（メインリポジトリ）
-  gifted-pascal/   ← claude/gifted-pascal
-  jolly-perlman/   ← claude/jolly-perlman
-  jolly-rubin/     ← claude/jolly-rubin
+Workspace/Rishu/
+  Rishu/                        ← main（メインリポジトリ）
+  <short-description>/          ← 作業ブランチ（命名規則に従う）
 ```
 
-| Worktree | ブランチ名 | パス | 用途 |
-|---|---|---|---|
-| Rishu | `main` | `Workspace/Rishu/` | 本番・リリース |
-| jolly-perlman | `claude/jolly-perlman` | `Workspace/jolly-perlman/` | 作業ブランチ1 |
-| gifted-pascal | `claude/gifted-pascal` | `Workspace/gifted-pascal/` | 作業ブランチ2 |
-| jolly-rubin | `claude/jolly-rubin` | `Workspace/jolly-rubin/` | 作業ブランチ3 |
+### ブランチ命名規則
+Claude Code がワークツリーを作成する際は必ず以下の形式を使う：
+
+```
+claude/<type>/<short-description>
+```
+
+| type | 用途 | 例 |
+|---|---|---|
+| `feat` | 新機能開発 | `claude/feat/home-screen` |
+| `fix` | バグ修正 | `claude/fix/sync-rate-display` |
+| `design` | UI・デザイン作業 | `claude/design/watchlist-ui` |
+| `docs` | 仕様・ドキュメント更新 | `claude/docs/spec-update` |
+| `chore` | 設定・環境変更 | `claude/chore/worktree-setup` |
+
+- `<short-description>` は英小文字・ハイフン区切り・20文字以内
+- ワークツリーのディレクトリ名は `<short-description>` 部分のみを使う
+  - 例：ブランチ `claude/feat/home-screen` → ディレクトリ `home-screen/`
 
 ### コミットルール
 - 1コミットの変更は **120行以内** を目安にする
