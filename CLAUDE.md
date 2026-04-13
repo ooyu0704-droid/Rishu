@@ -71,24 +71,34 @@
 ## Git ・ブランチ管理
 
 <git>
+### ブランチ命名規則（必ず遵守）
+| prefix | 用途 | 例 |
+|---|---|---|
+| `feat/` | 新機能開発 | `feat/sync-rate-screen` |
+| `fix/` | バグ修正 | `fix/profile-card-layout` |
+| `design/` | UI/デザイン作業 | `design/home-redesign` |
+| `docs/` | ドキュメント更新 | `docs/update-design-system` |
+| `chore/` | 設定・環境変更 | `chore/worktree-setup` |
+
+⚠️ Claude Code が自動生成する `claude/xxx` 形式のブランチ名は**使用禁止**。必ず上記prefixに改名すること。
+
 ### マルチWorktreeの運用ルール
-このリポジトリは `git worktree` によるパラレルブランチ構成を採用しています。
 Worktreeはメインリポジトリの**兄弟ディレクトリ**として配置します。
 
 ```
 Workspace/
-  Rishu/           ← main（メインリポジトリ）
-  gifted-pascal/   ← claude/gifted-pascal
-  jolly-perlman/   ← claude/jolly-perlman
-  jolly-rubin/     ← claude/jolly-rubin
+  Rishu/              ← main（メインリポジトリ）
+  feat-sync-screen/   ← feat/sync-screen
+  fix-layout/         ← fix/profile-layout
 ```
 
-| Worktree | ブランチ名 | パス | 用途 |
-|---|---|---|---|
-| Rishu | `main` | `Workspace/Rishu/` | 本番・リリース |
-| jolly-perlman | `claude/jolly-perlman` | `Workspace/jolly-perlman/` | 作業ブランチ1 |
-| gifted-pascal | `claude/gifted-pascal` | `Workspace/gifted-pascal/` | 作業ブランチ2 |
-| jolly-rubin | `claude/jolly-rubin` | `Workspace/jolly-rubin/` | 作業ブランチ3 |
+⚠️ `.claude/worktrees/` への配置は**禁止**。Claude Code が自動作成した場合は手動で移動すること。
+
+### Worktreeの正しい作成手順
+```bash
+# Workspace/ ディレクトリで実行
+git -C Rishu worktree add ../feat-sync-screen feat/sync-screen
+```
 
 ### コミットルール
 - 1コミットの変更は **120行以内** を目安にする
