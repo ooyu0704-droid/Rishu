@@ -73,13 +73,22 @@
 <git>
 ### マルチWorktreeの運用ルール
 このリポジトリは `git worktree` によるパラレルブランチ構成を採用しています。
+Worktreeはメインリポジトリの**兄弟ディレクトリ**として配置します。
 
-| Worktree | ブランチ名 | 用途 |
-|---|---|---|
-| main | `main` | 本番・リリース |
-| jolly-perlman | `claude/jolly-perlman` | 作業ブランチ1 |
-| gifted-pascal | `claude/gifted-pascal` | 作業ブランチ2 |
-| jolly-rubin | `claude/jolly-rubin` | 作業ブランチ3 |
+```
+Workspace/
+  Rishu/           ← main（メインリポジトリ）
+  gifted-pascal/   ← claude/gifted-pascal
+  jolly-perlman/   ← claude/jolly-perlman
+  jolly-rubin/     ← claude/jolly-rubin
+```
+
+| Worktree | ブランチ名 | パス | 用途 |
+|---|---|---|---|
+| Rishu | `main` | `Workspace/Rishu/` | 本番・リリース |
+| jolly-perlman | `claude/jolly-perlman` | `Workspace/jolly-perlman/` | 作業ブランチ1 |
+| gifted-pascal | `claude/gifted-pascal` | `Workspace/gifted-pascal/` | 作業ブランチ2 |
+| jolly-rubin | `claude/jolly-rubin` | `Workspace/jolly-rubin/` | 作業ブランチ3 |
 
 ### コミットルール
 - 1コミットの変更は **120行以内** を目安にする
