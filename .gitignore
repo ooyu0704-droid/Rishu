@@ -1,2 +1,5 @@
 # Claude Code local settings (machine-specific)
 .claude/settings.local.json
+
+# Git worktrees (sibling directories, not tracked here)
+.claude/worktrees/
